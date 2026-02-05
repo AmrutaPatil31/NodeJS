@@ -13,7 +13,7 @@ app.use(cors());
 //post
 app.post('/api/notes', async (req, res) => {
 
-    console.log(req.body);   // <-- ADD THIS
+    console.log(req.body);   
 
     const { title, description } = req.body;
 
@@ -59,8 +59,15 @@ app.patch('/api/notes/:id', async (req, res) => {
 });
 
 //handles that api which you have not created
-app.use('*name',(req,res)=>{
-    res.sendFile(path.join(__dirname, "..","/public/index.html"))
+// FIX 1: Removed 'name' so it catches all routes
+// FIX 2: Fixed path to look in current directory -> public folder
+app.use('*',(req,res)=>{
+    res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
+
+// FIX 3: Added listener so server actually starts
+app.listen(3000, () => {
+    console.log("Server running on port 3000");
 })
 
 module.exports=app;
