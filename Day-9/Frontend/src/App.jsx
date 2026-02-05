@@ -5,7 +5,7 @@ function App() {
   const [notes, setNotes] = useState([]);
 
   function fetchNotes(){
-    axios.get('http://localhost:3000/api/notes')
+    axios.get('https://beginner-web-projects-series.onrender.com/api/notes')
       .then(res => {
         setNotes(res.data.note);
       })
@@ -20,7 +20,7 @@ function App() {
     e.preventDefault();
     const { title, description } = e.target.elements;
 
-    axios.post('http://localhost:3000/api/notes', {
+    axios.post('https://beginner-web-projects-series.onrender.com/api/notes', {
       title: title.value,
       description: description.value
     })
@@ -30,7 +30,7 @@ function App() {
   }
 
   function handleDelete(noteId){
-    axios.delete('http://localhost:3000/api/notes/' + noteId)
+    axios.delete('https://beginner-web-projects-series.onrender.com/api/notes/' + noteId)
       .then(res => {
         fetchNotes();
       });
