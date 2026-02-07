@@ -58,14 +58,16 @@ app.patch('/api/notes/:id', async (req, res) => {
     });
 });
 
-//handles that api which you have not created
-// FIX 1: Removed 'name' so it catches all routes
-// FIX 2: Fixed path to look in current directory -> public folder
-app.use('*',(req,res)=>{
-    res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
 
-// FIX 3: Added listener so server actually starts
+app.use('*name',(req,res)=>{
+   res.sendFile(path.join(__dirname,",", './public/index.html'))
+})
+// app.use((req, res) => {
+//   res.status(404).json({ message: 'Not Found' })
+// })
+
+
+
 app.listen(3000, () => {
     console.log("Server running on port 3000");
 })
