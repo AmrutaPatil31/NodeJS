@@ -1,5 +1,5 @@
 const userModel=require('../models/user.model');
-const crypto=require("crypto");
+const bcrypt=require("bcryptjs");
 const jwt=require('jsonwebtoken');
 
 async function registerController(req,res){
@@ -71,7 +71,9 @@ async function loginController(req,res){
     });
 }
 
-    const hash = crypto.createHash('sha256').update(password).digest('hex');
+    // const hash = crypto.createHash('sha256').update(password).digest('hex');
+    const hash = bcrypt.hash(password,10);
+
 
      if (user.password !== hash) {
         return res.status(401).json({
